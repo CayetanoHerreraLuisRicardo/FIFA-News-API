@@ -1,0 +1,29 @@
+{
+  "name": "cnn-clone",
+  "version": "1.0.0",
+  "description": "wep app CNN Clone",
+  "main": "app.js",
+  "scripts": {
+    "test": "test npm run app.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/CayetanoHerreraLuisRicardo/FIFA-News-API.git"
+  },
+  "keywords": [
+    "CNN",
+    "news",
+    "clone",
+    "RSS",
+    "Feed"
+  ],
+  "author": "richych92@gmail.com",
+  "license": "ISC",
+  "dependencies": {
+    "body-parser": "^1.19.0",
+    "dotenv": "^8.2.0",
+    "express": "^4.17.1",
+    "rss-parser": "^3.9.0",
+    "swagger-ui-express": "^4.1.4"
+  }
+}
