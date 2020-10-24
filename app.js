@@ -52,7 +52,6 @@ app.use(function (req, res, next) {
     res.status(404);
     res.send(`<body style="margin: 0px; background: #000;"><center><img src='${process.env.APP_BASE_URL}/public/images/404.png' alt="404 Not Found"></center>`);
     return;
-    `<body style="margin: 0px; background: #0e0e0e;"><img style="-webkit-user-select: none;margin: auto;" src="https://fifa-news-api.herokuapp.com/public/images/404.png"></body>`
 });
 /********** Nuestra app esta lista para escuchar conexiones en http://localhost en el puerto seleccionado **********/
 app.listen(port, () => {
