@@ -24,9 +24,7 @@ app.use((req, res, next) => {
 });
 /********** Middleware para exponer archivos de la carpeta /public del proyecto mediante el prefijo de vía de acceso con el mismo nombre /public. **********/
 app.use(process.env.APP_SWAGGER_URL, express.static(__dirname + process.env.APP_SWAGGER_URL));
-
-/********** Importamos todas las rutas de la API**********/
-const apiRouter = require('./routes/api');
+app.use('/public', express.static(__dirname + '/public'));
 /********** Cuerpo de solicitud json para soportar hasta 500 mb**********/
 app.use(parser.json({ limit: '10mb' }));
 /********** Cuerpo de solicitud urlencoded **********/
@@ -36,10 +34,12 @@ app.get('/', (req, res) => {
     // res.send("Welcome!");
     res.redirect('/api-docs');
 });
+/********** Importamos todas las rutas de la API**********/
+const apiRouter = require('./routes/api');
 /********** Rutas de nuestra API **********/
 app.use('/api', apiRouter);
 /********** Para cargar nuestra documentación swagger.json desde una URL **********/
-var options = {
+const options = {
     swaggerOptions: {
         url: process.env.APP_BASE_URL + process.env.APP_SWAGGER_URL + process.env.APP_SWAGGER_FILE
     },
@@ -47,6 +47,12 @@ var options = {
 }
 /********** Ruta de nuestra documentación en swagger **********/
 app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(null, options));
+
+app.use(function (req, res, next) {
+    res.status(404);
+    res.send(`<center><img src='${process.env.APP_BASE_URL}/public/images/404.png' alt="404 Not Found"></center>`);
+    return;
+});
 /********** Nuestra app esta lista para escuchar conexiones en http://localhost en el puerto seleccionado **********/
 app.listen(port, () => {
     console.log(`App corriendo en http://localhost:${port}`);
