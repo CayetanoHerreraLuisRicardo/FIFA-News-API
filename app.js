@@ -33,14 +33,15 @@ app.use(parser.json({ limit: '10mb' }));
 app.use(parser.urlencoded({ limit: '500mb', extended: false }));
 /********** Ruta raiz de la API => redireccionamos a la documentación **********/
 app.get('/', (req, res) => {
-    res.redirect('/api-docs')
+    res.send("Welcome!");
+    // res.redirect('/api-docs');
 });
 /********** Rutas de nuestra API **********/
 app.use('/api', apiRouter);
 /********** Para cargar nuestra documentación swagger.json desde una URL **********/
 var options = {
     swaggerOptions: {
-        url: 'https://fifa-news-api.herokuapp.com/doc/swagger.json'
+        url: 'http://localhost:3000/doc/swagger.json'
     },
     explorer: true
 }

@@ -7,7 +7,6 @@ info:
     \ can use this API as long as the fifa rss-feed is available."
   version: "1.0.0"
   title: "Swagger API FIFA News"
-  termsOfService: "https://apififa.herokuapp.com"
   contact:
     email: "richych92@gmail.com"
   license:
@@ -22,7 +21,7 @@ tags:
       description: "Find out more"
       url: "https://www.fifa.com/"
 schemes:
-  - "http"
+  - "https"
 paths:
   /news:
     get:
