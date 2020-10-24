@@ -14,7 +14,7 @@ const port = process.env.PORT || '3000';
 /********** Middleware para el manejo de las CORSS **********/
 app.use((req, res, next) => {
     // Sitio web que esta permitido conectarse a la API
-    res.setHeader('Access-Control-Allow-Origin', 'https://fifa-news-api.herokuapp.com/');
+    res.setHeader('Access-Control-Allow-Origin', process.env.APP_BASE_URL);
     // Metodos http permitidos
     res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, PATCH, DELETE');
     // Encabezados permitidos
@@ -33,15 +33,15 @@ app.use(parser.json({ limit: '10mb' }));
 app.use(parser.urlencoded({ limit: '500mb', extended: false }));
 /********** Ruta raiz de la API => redireccionamos a la documentación **********/
 app.get('/', (req, res) => {
-    res.send("Welcome!");
-    // res.redirect('/api-docs');
+    // res.send("Welcome!");
+    res.redirect('/api-docs');
 });
 /********** Rutas de nuestra API **********/
 app.use('/api', apiRouter);
 /********** Para cargar nuestra documentación swagger.json desde una URL **********/
 var options = {
     swaggerOptions: {
-        url: 'http://localhost:3000/doc/swagger.json'
+        url: process.env.APP_BASE_URL + process.env.APP_SWAGGER_URL + process.env.APP_SWAGGER_FILE
     },
     explorer: true
 }
