@@ -35,10 +35,8 @@ npm install
 
 Si todo sale bien, podras ver la documentación de la API en: http://localhost:3000/api-docs/
 
-![swagger-1](https://github.com/CayetanoHerreraLuisRicardo/swagger-angularjs-client/blob/master/screenshot/screenshot-swagger1.png)
+![swagger-1](https://github.com/CayetanoHerreraLuisRicardo/FIFA-News-API/blob/main/public/images/screenshot-swagger1.png)
 
 Tambien pueden consumir la API desde esta documentación para ver como funciona, enviando los parametros y viendo lo que la API regresa.
 
-![swagger-1](https://github.com/CayetanoHerreraLuisRicardo/swagger-angularjs-client/blob/master/screenshot/screenshot-swagger2.png)
-
-
+![swagger-2](https://github.com/CayetanoHerreraLuisRicardo/FIFA-News-API/blob/main/public/images/screenshot-swagger2.png)
