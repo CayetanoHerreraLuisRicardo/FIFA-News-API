@@ -3,8 +3,7 @@
   "info": {
     "description": "This is a sample API Documentation about FIFA news. The api consumes the data from the official FIFA RSS-feed https://www.fifa.com/rss-feeds/ You can use this API as long as the fifa rss-feed is available.",
     "version": "1.0.0",
-    "title": "Swagger API FIFA News",
-    "termsOfService": "https://apififa.herokuapp.com",
+    "title": "Swagger API FIFA.com News",
     "contact": {
       "email": "richych92@gmail.com"
     },
@@ -13,7 +12,7 @@
       "url": "http://www.apache.org/licenses/LICENSE-2.0.html"
     }
   },
-  "host": "localhost:3000",
+  "host": "fifa-news-api.herokuapp.com",
   "basePath": "/api",
   "tags": [
     {

@@ -1,7 +1,8 @@
 ---
 swagger: "2.0"
 info:
-  description: "This is a sample API Documentation about FIFA news. The api consumes\
+  description:
+    "This is a sample API Documentation about FIFA news. The api consumes\
     \ the data from the official FIFA RSS-feed https://www.fifa.com/rss-feeds/ You\
     \ can use this API as long as the fifa rss-feed is available."
   version: "1.0.0"
@@ -12,43 +13,44 @@ info:
   license:
     name: "Apache 2.0"
     url: "http://www.apache.org/licenses/LICENSE-2.0.html"
-host: "localhost:3000"
+host: "fifa-news-api.herokuapp.com"
 basePath: "/api"
 tags:
-- name: "news"
-  description: "All news about soccer by FIFA"
-  externalDocs:
-    description: "Find out more"
-    url: "https://www.fifa.com/"
+  - name: "news"
+    description: "All news about soccer by FIFA"
+    externalDocs:
+      description: "Find out more"
+      url: "https://www.fifa.com/"
 schemes:
-- "http"
+  - "http"
 paths:
   /news:
     get:
       tags:
-      - "news"
+        - "news"
       summary: "Finds news soccer by type of news"
-      description: "You can choose a type of news sending the query 't' param in the\
+      description:
+        "You can choose a type of news sending the query 't' param in the\
         \ request"
       operationId: "findNewsSoccer"
       consumes:
-      - "application/json"
+        - "application/json"
       produces:
-      - "application/json"
+        - "application/json"
       parameters:
-      - name: "type"
-        in: "query"
-        description: "Type news that need to be considered for filter"
-        required: false
-        type: "array"
-        items:
-          type: "string"
-          enum:
-          - "1"
-          - "2"
-          - "3"
-          - "4"
-        collectionFormat: "multi"
+        - name: "type"
+          in: "query"
+          description: "Type news that need to be considered for filter"
+          required: false
+          type: "array"
+          items:
+            type: "string"
+            enum:
+              - "1"
+              - "2"
+              - "3"
+              - "4"
+          collectionFormat: "multi"
       responses:
         "200":
           description: "successful operation"
@@ -78,11 +80,13 @@ definitions:
     properties:
       success:
         type: "boolean"
-        description: "success: notifies the user if the server response is successful\
+        description:
+          "success: notifies the user if the server response is successful\
           \ or not."
       code:
         type: "integer"
-        description: "code: notifies the user a response code. If the code value is\
+        description:
+          "code: notifies the user a response code. If the code value is\
           \  == -1 then the operation was success, if the code value is >1 someting\
           \ went wrong, if the code value is == 1000 an exception occurred."
       data:
@@ -100,34 +104,34 @@ definitions:
         language: "language"
         title: "title"
         items:
-        - creator: "creator"
-          link: "link"
-          content:encodedSnippet: "content:encodedSnippet"
-          dc:creator: "dc:creator"
-          guid: "guid"
-          categories:
-          - "categories"
-          - "categories"
-          isoDate: "isoDate"
-          title: "title"
-          content:encoded: "content:encoded"
-          pubDate: "pubDate"
-          content: "content"
-          contentSnippet: "contentSnippet"
-        - creator: "creator"
-          link: "link"
-          content:encodedSnippet: "content:encodedSnippet"
-          dc:creator: "dc:creator"
-          guid: "guid"
-          categories:
-          - "categories"
-          - "categories"
-          isoDate: "isoDate"
-          title: "title"
-          content:encoded: "content:encoded"
-          pubDate: "pubDate"
-          content: "content"
-          contentSnippet: "contentSnippet"
+          - creator: "creator"
+            link: "link"
+            content:encodedSnippet: "content:encodedSnippet"
+            dc:creator: "dc:creator"
+            guid: "guid"
+            categories:
+              - "categories"
+              - "categories"
+            isoDate: "isoDate"
+            title: "title"
+            content:encoded: "content:encoded"
+            pubDate: "pubDate"
+            content: "content"
+            contentSnippet: "contentSnippet"
+          - creator: "creator"
+            link: "link"
+            content:encodedSnippet: "content:encodedSnippet"
+            dc:creator: "dc:creator"
+            guid: "guid"
+            categories:
+              - "categories"
+              - "categories"
+            isoDate: "isoDate"
+            title: "title"
+            content:encoded: "content:encoded"
+            pubDate: "pubDate"
+            content: "content"
+            contentSnippet: "contentSnippet"
       success: true
       message: "message"
   DataNews:
@@ -157,34 +161,34 @@ definitions:
       language: "language"
       title: "title"
       items:
-      - creator: "creator"
-        link: "link"
-        content:encodedSnippet: "content:encodedSnippet"
-        dc:creator: "dc:creator"
-        guid: "guid"
-        categories:
-        - "categories"
-        - "categories"
-        isoDate: "isoDate"
-        title: "title"
-        content:encoded: "content:encoded"
-        pubDate: "pubDate"
-        content: "content"
-        contentSnippet: "contentSnippet"
-      - creator: "creator"
-        link: "link"
-        content:encodedSnippet: "content:encodedSnippet"
-        dc:creator: "dc:creator"
-        guid: "guid"
-        categories:
-        - "categories"
-        - "categories"
-        isoDate: "isoDate"
-        title: "title"
-        content:encoded: "content:encoded"
-        pubDate: "pubDate"
-        content: "content"
-        contentSnippet: "contentSnippet"
+        - creator: "creator"
+          link: "link"
+          content:encodedSnippet: "content:encodedSnippet"
+          dc:creator: "dc:creator"
+          guid: "guid"
+          categories:
+            - "categories"
+            - "categories"
+          isoDate: "isoDate"
+          title: "title"
+          content:encoded: "content:encoded"
+          pubDate: "pubDate"
+          content: "content"
+          contentSnippet: "contentSnippet"
+        - creator: "creator"
+          link: "link"
+          content:encodedSnippet: "content:encodedSnippet"
+          dc:creator: "dc:creator"
+          guid: "guid"
+          categories:
+            - "categories"
+            - "categories"
+          isoDate: "isoDate"
+          title: "title"
+          content:encoded: "content:encoded"
+          pubDate: "pubDate"
+          content: "content"
+          contentSnippet: "contentSnippet"
   Items:
     type: "object"
     properties:
@@ -221,8 +225,8 @@ definitions:
       dc:creator: "dc:creator"
       guid: "guid"
       categories:
-      - "categories"
-      - "categories"
+        - "categories"
+        - "categories"
       isoDate: "isoDate"
       title: "title"
       content:encoded: "content:encoded"

@@ -2,43 +2,55 @@
 const express = require('express');
 /********** Importamos el módulo 'body-parser' para analizar los cuerpos en cada solicitud o  request **********/
 const parser = require('body-parser');
-
+/********** Importamos el módulo 'swagger-ui-express' usado para generar la IU de nuestra documentación de la API hecha con swagger **********/
 const swaggerUi = require('swagger-ui-express');
-const swaggerDocument = require('./doc/swagger.json');
-/********** Importamos el módulo path para trabajar con archivos y ruta de directorios **********/
+/********** Importamos el archivo swagger.json que tiene la documentación de nuestra API **********/
+// const swaggerDocument = require('./doc/swagger.json');
 require('dotenv').config();
 /********** Creamos nuestra app Express **********/
 const app = express();
 /********** Definimos el puerto donde va a correr nuestra app **********/
 const port = process.env.PORT || '3000';
-/** CORSS **/
+/********** Middleware para el manejo de las CORSS **********/
 app.use((req, res, next) => {
-    res.header('Access-Control-Allow-Origin', '*');
-    res.header('Access-Control-Allow-Headers', 'Authorization, X-API-KEY, Origin, X-Requested-With, Content-Type, Accept, Access-Control-Allow-Request-Method');
-    res.header('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, DELETE');
-    res.header('Allow', 'GET, POST, OPTIONS, PUT, DELETE');
+    // Sitio web que esta permitido conectarse a la API
+    res.setHeader('Access-Control-Allow-Origin', 'https://fifa-news-api.herokuapp.com/');
+    // Metodos http permitidos
+    res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, PATCH, DELETE');
+    // Encabezados permitidos
+    res.setHeader('Access-Control-Allow-Headers', 'X-Requested-With,content-type');
+    // Continua al siguiente middleware
     next();
 });
-/********** Importamos todas las rutas **********/
+/********** Middleware para exponer archivos de la carpeta /public del proyecto mediante el prefijo de vía de acceso con el mismo nombre /public. **********/
+app.use(process.env.APP_SWAGGER_URL, express.static(__dirname + process.env.APP_SWAGGER_URL));
+
+/********** Importamos todas las rutas de la API**********/
 const apiRouter = require('./routes/api');
-/********** Cuerpo de solicitud json **********/
-app.use(parser.json({ limit: '500mb' }));
+/********** Cuerpo de solicitud json para soportar hasta 500 mb**********/
+app.use(parser.json({ limit: '10mb' }));
 /********** Cuerpo de solicitud urlencoded **********/
 app.use(parser.urlencoded({ limit: '500mb', extended: false }));
-/********** Ruta raiz de la API **********/
-app.get('/', async (req, res) => {
-    res.send("Welcome!");
+/********** Ruta raiz de la API => redireccionamos a la documentación **********/
+app.get('/', (req, res) => {
+    res.redirect('/api-docs')
 });
 /********** Rutas de nuestra API **********/
 app.use('/api', apiRouter);
+/********** Para cargar nuestra documentación swagger.json desde una URL **********/
 var options = {
+    swaggerOptions: {
+        url: 'https://fifa-news-api.herokuapp.com/doc/swagger.json'
+    },
     explorer: true
-};
-app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument, options));
+}
+/********** Ruta de nuestra documentación en swagger **********/
+app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(null, options));
 /********** Nuestra app esta lista para escuchar conexiones en http://localhost en el puerto seleccionado **********/
 app.listen(port, () => {
     console.log(`App corriendo en http://localhost:${port}`);
-    console.log(`Documentación en http://localhost:${port}/api-docs/`);
+    console.log(`Documentación en http://localhost:${port}/api-docs`);
+    console.log(`Archivo swagger.json en http://localhost:${port}/doc/swagger.json`);
 });
 
 
