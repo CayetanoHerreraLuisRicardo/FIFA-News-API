@@ -2,8 +2,7 @@
 const express = require('express');
 /********** Importamos el módulo 'body-parser' para analizar los cuerpos en cada solicitud o  request **********/
 const parser = require('body-parser');
-/********** Importamos el módulo 'path' para trabajar con archivos y ruta de directorios **********/
-const path = require('path');
+
 const swaggerUi = require('swagger-ui-express');
 const swaggerDocument = require('./doc/swagger.json');
 /********** Importamos el módulo path para trabajar con archivos y ruta de directorios **********/
@@ -38,7 +37,8 @@ var options = {
 app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument, options));
 /********** Nuestra app esta lista para escuchar conexiones en http://localhost en el puerto seleccionado **********/
 app.listen(port, () => {
-    console.log(`Api corriendo en  http://localhost:${port}`);
+    console.log(`App corriendo en http://localhost:${port}`);
+    console.log(`Documentación en http://localhost:${port}/api-docs/`);
 });
 
 
